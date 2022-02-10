@@ -9,6 +9,8 @@ import watchListIcon from "../resources/images/watchlist-icon.svg";
 import originalsIcon from "../resources/images/original-icon.svg";
 import moviesIcon from "../resources/images/movie-icon.svg";
 import seriesIcon from "../resources/images/series-icon.svg";
+import profileImage from "../resources/images/myphoto.jpg";
+
 
 function Header() {
   return (
@@ -24,23 +26,23 @@ function Header() {
           <span>SEARCH</span>
         </a>
         <a>
-          <img src={watchListIcon} alt="homeIcom" />
+          <img src={watchListIcon} alt="watchList" />
           <span>WATCHLIST</span>
         </a>
         <a>
-          <img src={originalsIcon} alt="homeIcom" />
+          <img src={originalsIcon} alt="originals" />
           <span>ORIGINALS</span>
         </a>
         <a>
-          <img src={moviesIcon} alt="homeIcom" />
+          <img src={moviesIcon} alt="movies" />
           <span>MOVIES</span>
         </a>
         <a>
-          <img src={seriesIcon} alt="homeIcom" />
+          <img src={seriesIcon} alt="series" />
           <span>SERIES</span>
         </a>
       </NavMenu>
-      <UserImg src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.0xAdVjT_Jkqerlz5SGSTfAHaEz%26pid%3DApi&f=1"/>
+      <UserImg src={profileImage} alt="propic" />
     </Nav>
   );
 }
@@ -61,23 +63,51 @@ const Logo = styled.img`
 
 const NavMenu = styled.div`
   display: flex;
-
+  flex: 1;
+  margin-left: 25px;
+  align-items: center;
   a {
     display: flex;
     align-items: center;
     padding: 0 12px;
+    cursor: pointer;
 
-    img{
-        height: 20px;
+    img {
+      height: 20px;
     }
 
-    span{
-        font-size: 13px;
-        letter-spacing: 1.42px;
+    span {
+      font-size: 13px;
+      letter-spacing: 1.42px;
+      position: relative;
+
+      &:after {
+        content: "";
+        height: 2px;
+        background: white;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -6px;
+        opacity: 0;
+        transform-origin: left center;
+        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+        transform: scaleX(0);
+      }
+    }
+
+    &:hover {
+      span: after {
+        transform: scaleX(1);
+        opacity: 1;
+      }
     }
   }
 `;
 
-const UserImg = styled.div`
-
+const UserImg = styled.img`
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
 `;
